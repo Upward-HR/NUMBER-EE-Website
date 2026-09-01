@@ -1,320 +1,484 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Employee Resource Portal</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --forest:     #1F5C3A;
-      --forest-dk:  #163F28;
-      --forest-lt:  #2A7A4E;
-      --gold:       #E8B84B;
-      --gold-lt:    #F5D98A;
-      --cream:      #F8F5EE;
-      --ink:        #1A1A1A;
-      --ink-soft:   #5C5C5C;
-      --border:     #D6CCB4;
-      --bg-alt:     #EFF5F1;
-      --white:      #FFFFFF;
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: "Source Sans 3", sans-serif;
-      background: var(--cream);
-      color: var(--ink);
-      font-size: 15px;
-      line-height: 1.7;
-    }
-    header {
-      background: var(--forest-dk);
-      padding: 24px 40px 20px;
-      border-bottom: 4px solid var(--gold);
-    }
-    header h1 {
-      font-family: "Playfair Display", serif;
-      color: var(--white);
-      font-size: 28px;
-      font-weight: 700;
-      margin-bottom: 2px;
-    }
-    header p {
-      color: var(--gold-lt);
-      font-size: 12px;
-      font-weight: 300;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-    }
-    .welcome {
-      background: var(--forest);
-      color: var(--white);
-      padding: 16px 40px;
-      font-size: 14px;
-      line-height: 1.6;
-      border-bottom: 2px solid var(--gold);
-    }
-    .welcome a { color: var(--gold-lt); text-decoration: none; }
-    .welcome a:hover { text-decoration: underline; }
-    main { max-width: 1000px; margin: 0 auto; padding: 36px 24px 48px; }
-    .section-title {
-      font-family: "Playfair Display", serif;
-      font-size: 20px;
-      font-weight: 700;
-      color: var(--forest-dk);
-      margin: 32px 0 16px 0;
-      padding-bottom: 8px;
-      border-bottom: 2px solid var(--gold);
-    }
-    .doc-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 16px;
-      margin-bottom: 32px;
-    }
-    .doc-card {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 16px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-      transition: all 0.2s ease;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-    .doc-card:hover {
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      border-color: var(--forest-lt);
-      transform: translateY(-2px);
-    }
-    .doc-title {
-      font-weight: 600;
-      color: var(--forest-dk);
-      font-size: 14px;
-      line-height: 1.4;
-    }
-    .doc-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 12px;
-      background: var(--bg-alt);
-      border: 1px solid #D4E4DB;
-      border-radius: 5px;
-      color: var(--forest-dk);
-      text-decoration: none;
-      font-size: 13px;
-      font-weight: 500;
-      transition: all 0.15s ease;
-      align-self: flex-start;
-      margin-top: auto;
-    }
-    .doc-link:hover {
-      background: #DFF0E7;
-      border-color: var(--forest-lt);
-      color: var(--forest);
-    }
-    .doc-badge {
-      display: inline-block;
-      font-size: 10px;
-      font-weight: 600;
-      padding: 3px 6px;
-      border-radius: 3px;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-      background: #FFF3E0;
-      color: #E65100;
-      margin-top: 6px;
-    }
-    footer {
-      background: var(--forest-dk);
-      color: #9DC4AE;
-      text-align: center;
-      padding: 20px 24px;
-      font-size: 12px;
-      border-top: 3px solid var(--gold);
-      margin-top: 40px;
-    }
-    footer a { color: var(--gold-lt); text-decoration: none; }
-    @media (max-width: 720px) {
-      main { padding: 20px 16px; }
-      header { padding: 16px 20px; }
-      header h1 { font-size: 22px; }
-      .doc-grid { grid-template-columns: 1fr; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NUMBER — Employee Resource Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --dark-bg: #051A16;
+    --dark-surface: #0A2E27;
+    --green: #002B22;
+    --lime: #98C848;
+    --lime-soft: rgba(152,200,72,0.14);
+    --off-white: #F7F9F5;
+    --paper: #FFFFFF;
+    --sage: #EDF2E9;
+    --text-dark: #F4F7F2;
+    --text-dark-secondary: #93A9A1;
+    --text-body: #1F2E28;
+    --text-muted: #5B6E65;
+    --border-light: #DCE5D8;
+    --mono: 'JetBrains Mono', monospace;
+    --display: 'Space Grotesk', sans-serif;
+    --body: 'Inter', sans-serif;
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+  body{
+    background:var(--off-white);
+    color:var(--text-body);
+    font-family:var(--body);
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{ color:inherit; text-decoration:none; }
+
+  /* ---------- TOP BAR (dark, brand anchor) ---------- */
+  .top-section{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    background:radial-gradient(ellipse at top left, var(--dark-surface) 0%, var(--dark-bg) 60%);
+  }
+  .topbar{
+    background:transparent;
+    padding:14px 40px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    border-bottom:1px solid rgba(152,200,72,0.18);
+  }
+  .topbar .logo-mark{
+    font-family:var(--display);
+    font-weight:700;
+    font-size:20px;
+    color:var(--text-dark);
+    letter-spacing:0.5px;
+  }
+  .topbar .logo-mark span{ color:var(--lime); }
+  .topbar .contact{
+    font-family:var(--mono);
+    font-size:12px;
+    color:var(--text-dark-secondary);
+  }
+  .topbar .contact a{ color:var(--lime); }
+
+  /* ---------- HERO (dark, kept for brand punch) ---------- */
+  .hero{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    padding:64px 40px 56px;
+    text-align:left;
+  }
+  .hero .eyebrow{
+    font-family:var(--mono);
+    font-size:16px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:var(--lime);
+    margin-bottom:14px;
+  }
+  .hero h1{
+    font-family:var(--display);
+    font-weight:700;
+    font-size:38px;
+    color:var(--text-dark);
+    line-height:1.15;
+    max-width:640px;
+  }
+  .hero p{
+    margin-top:14px;
+    color:var(--text-dark-secondary);
+    font-size:15px;
+    max-width:520px;
+    line-height:1.6;
+  }
+
+  .scroll-cue{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:6px;
+    padding-bottom:28px;
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    color:var(--text-dark-secondary);
+  }
+  .scroll-arrow{
+    color:var(--lime);
+    font-size:16px;
+    animation:bounce 1.8s infinite;
+  }
+  @keyframes bounce{
+    0%, 100%{ transform:translateY(0); }
+    50%{ transform:translateY(6px); }
+  }
+
+  /* ---------- MAIN (light, off-white — breaks up the dark) ---------- */
+  main{
+    max-width:1080px;
+    margin:0 auto;
+    padding:56px 40px 80px;
+  }
+
+  section{ margin-bottom:56px; }
+
+  .section-head{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    margin-bottom:22px;
+    border-bottom:2px solid var(--lime);
+    padding-bottom:10px;
+  }
+  .section-head h2{
+    font-family:var(--display);
+    font-weight:600;
+    font-size:22px;
+    color:var(--green);
+  }
+  .section-head .tag{
+    font-family:var(--mono);
+    font-size:11px;
+    color:var(--text-muted);
+    letter-spacing:1px;
+    text-transform:uppercase;
+  }
+
+  /* Resource cards */
+  .card-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:18px;
+  }
+  .card{
+    background:var(--paper);
+    border:1px solid var(--border-light);
+    border-radius:10px;
+    padding:22px;
+    transition:transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+    display:flex;
+    flex-direction:column;
+  }
+  .card:hover{
+    transform:translateY(-3px);
+    box-shadow:0 10px 24px rgba(0,43,34,0.10);
+    border-color:var(--lime);
+  }
+  .card .icon{
+    width:36px; height:36px;
+    border-radius:8px;
+    background:var(--lime-soft);
+    display:flex; align-items:center; justify-content:center;
+    margin-bottom:14px;
+    font-size:16px;
+    color:var(--green);
+  }
+  .card h3{
+    font-family:var(--display);
+    font-weight:600;
+    font-size:16px;
+    color:var(--green);
+    margin-bottom:6px;
+  }
+  .card p{
+    font-size:13px;
+    color:var(--text-muted);
+    line-height:1.5;
+    margin-bottom:14px;
+  }
+  .card .link{
+    font-family:var(--mono);
+    font-size:12px;
+    color:var(--green);
+    font-weight:500;
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    margin-top:auto;
+  }
+  .card .link::after{ content:"→"; color:var(--lime); }
+
+  /* Key contacts — black bubble panel */
+  .contacts-bubble{
+    background:var(--dark-bg);
+    border-radius:16px;
+    padding:32px;
+  }
+  .contacts-head{
+    border-bottom:2px solid var(--lime);
+  }
+  .contacts-head h2{ color:var(--text-dark); }
+  .contacts-head .tag{ color:var(--text-dark-secondary); }
+  .contact-grid{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:18px;
+  }
+  .contact-card{
+    background:var(--dark-surface);
+    border-radius:10px;
+    padding:20px;
+    border-left:4px solid var(--lime);
+  }
+  .contact-card .role{
+    font-family:var(--mono);
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:1px;
+    color:var(--text-dark-secondary);
+    margin-bottom:4px;
+  }
+  .contact-card .name{
+    font-family:var(--display);
+    font-weight:600;
+    font-size:16px;
+    color:var(--text-dark);
+    margin-bottom:6px;
+  }
+  .contact-card .detail{
+    font-size:13px;
+    color:var(--lime);
+  }
+
+  /* Footer */
+  footer{
+    background:var(--dark-bg);
+    padding:28px 40px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    border-top:1px solid rgba(152,200,72,0.18);
+  }
+  footer .foot-note{
+    font-family:var(--mono);
+    font-size:11px;
+    color:var(--text-dark-secondary);
+  }
+  footer a{ color:var(--lime); }
+
+  @media (max-width: 800px){
+    .card-grid, .contact-grid{ grid-template-columns:1fr; }
+    .hero h1{ font-size:28px; }
+    main{ padding:40px 24px 60px; }
+  }
+</style>
 </head>
 <body>
 
-<header>
-  <h1>Employee Resource Portal</h1>
-  <p>Essential Documents & Information for All Employees</p>
-</header>
-
-<div class="welcome">
-  Welcome to your employee resource portal. Access handbooks, benefits information, forms, and other essential documents. <strong>Questions?</strong> Contact your HR department.
-</div>
-
-<main>
-
-  <!-- HR & Company Policies -->
-  <div class="section-title">📋 HR & Company Policies</div>
-  <div class="doc-grid">
-    <div class="doc-card">
-      <div class="doc-title">Handbook 2026</div>
-      <a href="docs/Handbook%202026%20(1).docx" class="doc-link">
-        <span>📄</span> Download
-      </a>
-      <span class="doc-badge">DOCX</span>
-    </div>
-    <div class="doc-card">
-      <div class="doc-title">AML-ATF Policy</div>
-      <a href="docs/AML-ATF%20Policy.docx" class="doc-link">
-        <span>📄</span> Download
-      </a>
-      <span class="doc-badge">DOCX</span>
-    </div>
-    <div class="doc-card">
-      <div class="doc-title">Employee Confidentiality NDA</div>
-      <a href="docs/Employee%20Confidentiality%20NDA%20(2).docx" class="doc-link">
-        <span>📄</span> Download
-      </a>
-      <span class="doc-badge">DOCX</span>
-    </div>
-    <div class="doc-card">
-      <div class="doc-title">Travel & Expense Reimbursement Policy</div>
-      <a href="docs/Travel%20&%20Expense%20Reimbursement%20Policy.docx" class="doc-link">
-        <span>📄</span> Download
-      </a>
-      <span class="doc-badge">DOCX</span>
-    </div>
+  <div class="top-section">
+  <div class="topbar">
+    <div class="logo-mark">NUMBER <span>EE</span></div>
+    <div class="contact">Questions? <a href="mailto:hr@upmgt.org">hr@upmgt.org</a></div>
   </div>
 
-  <!-- Payroll & Compensation -->
-  <div class="section-title">💰 Payroll & Compensation</div>
-  <div class="doc-grid">
-    <div class="doc-card">
-      <div class="doc-title">2026 Form W-4</div>
-      <a href="docs/2026%20Form%20W-4.pdf" target="_blank" class="doc-link">
-        <span>📄</span> View PDF
-      </a>
-    </div>
-    <div class="doc-card">
-      <div class="doc-title">Form W-4ME</div>
-      <a href="docs/20_Form%20W-4ME.indd.pdf" target="_blank" class="doc-link">
-        <span>📄</span> View PDF
-      </a>
-    </div>
-    <div class="doc-card">
-      <div class="doc-title">Direct Deposit Authorization</div>
-      <a href="docs/Direct-Deposit-Authorization.pdf" target="_blank" class="doc-link">
-        <span>📄</span> View PDF
-      </a>
-    </div>
-    <div class="doc-card">
-      <div class="doc-title">Expense Report Template</div>
-      <a href="docs/Expense%20Report%20Template.pdf" target="_blank" class="doc-link">
-        <span>📄</span> View PDF
-      </a>
-    </div>
+  <div class="hero">
+    <div class="eyebrow">Employee Resource Hub</div>
+    <h1>Everything you need, in one place.</h1>
+    <p>Handbooks, benefits, forms, and essential documents — organized for the NUMBER team to find what you need in seconds.</p>
   </div>
 
-  <!-- Benefits & Insurance -->
-  <div class="section-title">🏥 Benefits & Insurance</div>
-  <div class="doc-grid">
-    <div class="doc-card">
-      <div class="doc-title">Option 1: Silver HMO Plan</div>
-      <a href="docs/Option%201%20-%20User%20Friendly%20-%20Silver%20HMO%20(1).pdf" target="_blank" class="doc-link">
-        <span>📄</span> View PDF
-      </a>
-    </div>
-    <div class="doc-card">
-      <div class="doc-title">Option 2: Silver PPO Plan</div>
-      <a href="docs/Option%202%20-%20User%20Friendly%20-%20Silver%20PPO%20(1).pdf" target="_blank" class="doc-link">
-        <span>📄</span> View PDF
-      </a>
-    </div>
-    <div class="doc-card">
-      <div class="doc-title">Option 3: Gold PPO Plan</div>
-      <a href="docs/Option%203%20-%20User%20Friendly%20-%20Gold%20PPO%20(1).pdf" target="_blank" class="doc-link">
-        <span>📄</span> View PDF
-      </a>
-    </div>
-    <div class="doc-card">
-      <div class="doc-title">Dental IVR Slipsheet</div>
-      <a href="docs/Dental%20IVR%20Slipsheet-Easy%20Pay%20Solutions%20Inc%20(1).pdf" target="_blank" class="doc-link">
-        <span>📄</span> View PDF
-      </a>
-    </div>
-    <div class="doc-card">
-      <div class="doc-title">Vision IVR Slipsheet</div>
-      <a href="docs/Vision%20IVR%20Slipsheet-Easy%20Pay%20Solutions%20Inc%20(1).pdf" target="_blank" class="doc-link">
-        <span>📄</span> View PDF
-      </a>
-    </div>
-    <div class="doc-card">
-      <div class="doc-title">STD Employee Claim Flyer</div>
-      <a href="docs/STD%20Employee%20Claim%20Flyer.pdf" target="_blank" class="doc-link">
-        <span>📄</span> View PDF
-      </a>
-    </div>
-    <div class="doc-card">
-      <div class="doc-title">PFML - Alfac Info Form</div>
-      <a href="docs/PFML%20-%20Alfac%20Info%20Form.pdf" target="_blank" class="doc-link">
-        <span>📄</span> View PDF
-      </a>
-    </div>
-    <div class="doc-card">
-      <div class="doc-title">PFML State Poster</div>
-      <a href="docs/PFML%20State%20Poster.pdf" target="_blank" class="doc-link">
-        <span>📄</span> View PDF
-      </a>
-    </div>
-    <div class="doc-card">
-      <div class="doc-title">Retirement Education Meeting</div>
-      <a href="docs/Easy%20Pay%20Solutions%20Retirement%20Education%20Meeting%20(1).pdf" target="_blank" class="doc-link">
-        <span>📄</span> View PDF
-      </a>
-    </div>
-    <div class="doc-card">
-      <div class="doc-title">Participant Web Flyer</div>
-      <a href="docs/Participant%20Web%20Flyer%20(1).pdf" target="_blank" class="doc-link">
-        <span>📄</span> View PDF
-      </a>
-    </div>
+  <div class="scroll-cue">
+    <span>Scroll for resources</span>
+    <div class="scroll-arrow">↓</div>
+  </div>
   </div>
 
-  <!-- Workplace Tools & Resources -->
-  <div class="section-title">🛠️ Tools & Resources</div>
-  <div class="doc-grid">
-    <div class="doc-card">
-      <div class="doc-title">Personalized Experience Tools & Widgets</div>
-      <a href="docs/Personalized%20Experience%20tools_widgets%20flyer%20(1).PDF" target="_blank" class="doc-link">
-        <span>📄</span> View PDF
-      </a>
-    </div>
-    <div class="doc-card">
-      <div class="doc-title">Employee Kiosk Information</div>
-      <a href="docs/EE%20Kiosk.pdf" target="_blank" class="doc-link">
-        <span>📄</span> View PDF
-      </a>
-    </div>
-    <div class="doc-card">
-      <div class="doc-title">Fast Rock Planner</div>
-      <a href="docs/Fast%20Rock%20Planner.pdf" target="_blank" class="doc-link">
-        <span>📄</span> View PDF
-      </a>
-    </div>
-  </div>
+  <main>
 
-</main>
+    <section>
+      <div class="section-head">
+        <h2>HR & Policies</h2>
+        <span class="tag">Documents & Forms</span>
+      </div>
+      <div class="card-grid">
+        <div class="card">
+          <div class="icon">📘</div>
+          <h3>Handbook 2026</h3>
+          <p>Policies, expectations, and day-to-day work standards at NUMBER.</p>
+          <a href="docs/Handbook%202026%20(1).docx" class="link">Download</a>
+        </div>
+        <div class="card">
+          <div class="icon">🔒</div>
+          <h3>Confidentiality NDA</h3>
+          <p>Employee confidentiality agreement protecting company and client information.</p>
+          <a href="docs/Employee%20Confidentiality%20NDA%20(2).docx" class="link">Download</a>
+        </div>
+        <div class="card">
+          <div class="icon">⚖️</div>
+          <h3>AML-ATF Policy</h3>
+          <p>Anti-money laundering standards and compliance obligations.</p>
+          <a href="docs/AML-ATF%20Policy.docx" class="link">Download</a>
+        </div>
+        <div class="card">
+          <div class="icon">✈️</div>
+          <h3>Expense Reimbursement</h3>
+          <p>Travel and expense reimbursement policy and procedures.</p>
+          <a href="docs/Travel%20&%20Expense%20Reimbursement%20Policy.docx" class="link">Download</a>
+        </div>
+      </div>
+    </section>
 
-<footer>
-  <p>Employee Resource Portal &mdash; All rights reserved.<br>
-  For assistance, please contact your HR department.</p>
-</footer>
+    <section>
+      <div class="section-head">
+        <h2>Payroll & Compensation</h2>
+        <span class="tag">Forms & Forms</span>
+      </div>
+      <div class="card-grid">
+        <div class="card">
+          <div class="icon">💵</div>
+          <h3>Form W-4 (2026)</h3>
+          <p>Federal withholding tax form for current tax year.</p>
+          <a href="docs/2026%20Form%20W-4.pdf" target="_blank" class="link">View</a>
+        </div>
+        <div class="card">
+          <div class="icon">📋</div>
+          <h3>Form W-4ME</h3>
+          <p>Maine state withholding tax form.</p>
+          <a href="docs/20_Form%20W-4ME.indd.pdf" target="_blank" class="link">View</a>
+        </div>
+        <div class="card">
+          <div class="icon">🏦</div>
+          <h3>Direct Deposit Auth</h3>
+          <p>Authorization form for direct deposit setup and changes.</p>
+          <a href="docs/Direct-Deposit-Authorization.pdf" target="_blank" class="link">View</a>
+        </div>
+        <div class="card">
+          <div class="icon">💼</div>
+          <h3>Expense Report</h3>
+          <p>Template for submitting business expense reimbursement requests.</p>
+          <a href="docs/Expense%20Report%20Template.pdf" target="_blank" class="link">View</a>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <h2>Benefits & Insurance</h2>
+        <span class="tag">Health & Wellness</span>
+      </div>
+      <div class="card-grid">
+        <div class="card">
+          <div class="icon">🏥</div>
+          <h3>Silver HMO Plan</h3>
+          <p>Health Maintenance Organization plan option with user-friendly overview.</p>
+          <a href="docs/Option%201%20-%20User%20Friendly%20-%20Silver%20HMO%20(1).pdf" target="_blank" class="link">View</a>
+        </div>
+        <div class="card">
+          <div class="icon">🏥</div>
+          <h3>Silver PPO Plan</h3>
+          <p>Preferred Provider Organization plan with flexibility and choice.</p>
+          <a href="docs/Option%202%20-%20User%20Friendly%20-%20Silver%20PPO%20(1).pdf" target="_blank" class="link">View</a>
+        </div>
+        <div class="card">
+          <div class="icon">✨</div>
+          <h3>Gold PPO Plan</h3>
+          <p>Premium PPO coverage with enhanced benefits.</p>
+          <a href="docs/Option%203%20-%20User%20Friendly%20-%20Gold%20PPO%20(1).pdf" target="_blank" class="link">View</a>
+        </div>
+        <div class="card">
+          <div class="icon">😁</div>
+          <h3>Dental Benefits</h3>
+          <p>Dental insurance information and IVR access guide.</p>
+          <a href="docs/Dental%20IVR%20Slipsheet-Easy%20Pay%20Solutions%20Inc%20(1).pdf" target="_blank" class="link">View</a>
+        </div>
+        <div class="card">
+          <div class="icon">👓</div>
+          <h3>Vision Benefits</h3>
+          <p>Vision insurance information and IVR access guide.</p>
+          <a href="docs/Vision%20IVR%20Slipsheet-Easy%20Pay%20Solutions%20Inc%20(1).pdf" target="_blank" class="link">View</a>
+        </div>
+        <div class="card">
+          <div class="icon">🛡️</div>
+          <h3>Short-Term Disability</h3>
+          <p>STD employee claim information and filing procedures.</p>
+          <a href="docs/STD%20Employee%20Claim%20Flyer.pdf" target="_blank" class="link">View</a>
+        </div>
+        <div class="card">
+          <div class="icon">👶</div>
+          <h3>PFML - Alfac</h3>
+          <p>Paid Family and Medical Leave information and enrollment form.</p>
+          <a href="docs/PFML%20-%20Alfac%20Info%20Form.pdf" target="_blank" class="link">View</a>
+        </div>
+        <div class="card">
+          <div class="icon">📢</div>
+          <h3>PFML State Poster</h3>
+          <p>Maine state poster for Paid Family and Medical Leave rights.</p>
+          <a href="docs/PFML%20State%20Poster.pdf" target="_blank" class="link">View</a>
+        </div>
+        <div class="card">
+          <div class="icon">🎓</div>
+          <h3>Retirement Education</h3>
+          <p>Retirement planning meeting resources and guidance.</p>
+          <a href="docs/Easy%20Pay%20Solutions%20Retirement%20Education%20Meeting%20(1).pdf" target="_blank" class="link">View</a>
+        </div>
+        <div class="card">
+          <div class="icon">💡</div>
+          <h3>Participant Portal</h3>
+          <p>Web flyer and login information for the benefits participant portal.</p>
+          <a href="docs/Participant%20Web%20Flyer%20(1).pdf" target="_blank" class="link">View</a>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <h2>Tools & Resources</h2>
+        <span class="tag">Employee Essentials</span>
+      </div>
+      <div class="card-grid">
+        <div class="card">
+          <div class="icon">⚙️</div>
+          <h3>Personalized Tools</h3>
+          <p>Information on personalized experience tools and available widgets.</p>
+          <a href="docs/Personalized%20Experience%20tools_widgets%20flyer%20(1).PDF" target="_blank" class="link">View</a>
+        </div>
+        <div class="card">
+          <div class="icon">🖥️</div>
+          <h3>Employee Kiosk</h3>
+          <p>Guide to accessing and using the employee self-service kiosk.</p>
+          <a href="docs/EE%20Kiosk.pdf" target="_blank" class="link">View</a>
+        </div>
+        <div class="card">
+          <div class="icon">📅</div>
+          <h3>Fast Rock Planner</h3>
+          <p>Annual planner and organizational tool for the NUMBER team.</p>
+          <a href="docs/Fast%20Rock%20Planner.pdf" target="_blank" class="link">View</a>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="contacts-bubble">
+        <div class="section-head contacts-head">
+          <h2>Key Contacts</h2>
+          <span class="tag">Who to reach</span>
+        </div>
+        <div class="contact-grid">
+          <div class="contact-card">
+            <div class="role">HR Support</div>
+            <div class="name">Human Resources Team</div>
+            <div class="detail">hr@upmgt.org</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="foot-note">© 2026 NUMBER Payments</div>
+    <div class="foot-note">Employee Resource Hub</div>
+  </footer>
 
 </body>
 </html>
