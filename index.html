@@ -9,483 +9,626 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{
-    --dark-bg: #051A16;
-    --dark-surface: #0A2E27;
-    --green: #002B22;
-    --lime: #98C848;
-    --lime-soft: rgba(152,200,72,0.14);
-    --off-white: #F7F9F5;
-    --paper: #FFFFFF;
-    --sage: #EDF2E9;
-    --text-dark: #F4F7F2;
-    --text-dark-secondary: #93A9A1;
-    --text-body: #1F2E28;
-    --text-muted: #5B6E65;
-    --border-light: #DCE5D8;
+    --bg: #051A16;
+    --surface: #123830;
+    --surface-hover: #1A453A;
+    --accent: #98C848;
+    --accent-soft: rgba(152,200,72,0.14);
+    --accent-line: rgba(152,200,72,0.22);
+    --text-primary: #F4F7F2;
+    --text-secondary: #93A9A1;
+    --border: rgba(152,200,72,0.14);
     --mono: 'JetBrains Mono', monospace;
     --display: 'Space Grotesk', sans-serif;
     --body: 'Inter', sans-serif;
   }
 
-  *{ box-sizing:border-box; margin:0; padding:0; }
+  *{ box-sizing:border-box; }
   html{ scroll-behavior:smooth; }
   body{
-    background:var(--off-white);
-    color:var(--text-body);
+    margin:0;
+    background:var(--bg);
+    color:var(--text-primary);
     font-family:var(--body);
     -webkit-font-smoothing:antialiased;
   }
 
   a{ color:inherit; text-decoration:none; }
 
-  /* ---------- TOP BAR (dark, brand anchor) ---------- */
-  .top-section{
-    min-height:100vh;
-    display:flex;
-    flex-direction:column;
-    background:radial-gradient(ellipse at top left, var(--dark-surface) 0%, var(--dark-bg) 60%);
-  }
+  /* ---------- Top bar ---------- */
   .topbar{
-    background:transparent;
-    padding:14px 40px;
     display:flex;
     align-items:center;
     justify-content:space-between;
-    border-bottom:1px solid rgba(152,200,72,0.18);
+    padding:28px 48px;
+    max-width:1240px;
+    margin:0 auto;
   }
-  .topbar .logo-mark{
-    height:26px;
-    width:auto;
-    display:block;
-  }
-  .topbar .contact{
+  .logo{ height:26px; display:block; }
+  .topbar-right{
     font-family:var(--mono);
-    font-size:12px;
-    color:var(--text-dark-secondary);
+    font-size:13px;
+    color:var(--text-secondary);
+    letter-spacing:0.02em;
   }
-  .topbar .contact a{ color:var(--lime); }
+  .topbar-right a{ color:var(--accent); }
 
-  /* ---------- HERO (dark, kept for brand punch) ---------- */
+  /* ---------- Hero ---------- */
   .hero{
-    flex:1;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    padding:64px 40px 56px;
-    text-align:left;
+    max-width:1240px;
+    margin:0 auto;
+    padding:64px 48px 88px;
+    position:relative;
   }
-  .hero .eyebrow{
+  .eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
     font-family:var(--mono);
-    font-size:16px;
-    letter-spacing:2px;
+    font-size:12.5px;
+    letter-spacing:0.14em;
     text-transform:uppercase;
-    color:var(--lime);
-    margin-bottom:14px;
+    color:var(--text-secondary);
+    margin-bottom:28px;
   }
-  .hero h1{
+  .dot{
+    width:9px; height:9px;
+    border-radius:50%;
+    background:var(--accent);
+    box-shadow:0 0 0 0 rgba(152,200,72,0.5);
+    flex-shrink:0;
+  }
+  @media (prefers-reduced-motion: no-preference){
+    .dot.pulse{ animation:pulse 2.6s ease-in-out infinite; }
+  }
+  @keyframes pulse{
+    0%{ box-shadow:0 0 0 0 rgba(152,200,72,0.45); }
+    70%{ box-shadow:0 0 0 8px rgba(152,200,72,0); }
+    100%{ box-shadow:0 0 0 0 rgba(152,200,72,0); }
+  }
+
+  h1{
     font-family:var(--display);
-    font-weight:700;
-    font-size:38px;
-    color:var(--text-dark);
-    line-height:1.15;
-    max-width:640px;
+    font-weight:600;
+    font-size:clamp(36px, 5vw, 58px);
+    line-height:1.06;
+    letter-spacing:-0.015em;
+    margin:0 0 20px;
+    max-width:760px;
   }
-  .hero p{
-    margin-top:14px;
-    color:var(--text-dark-secondary);
-    font-size:15px;
+  h1 span{ color:var(--accent); }
+
+  .hero-sub{
+    font-size:17px;
+    color:var(--text-secondary);
     max-width:520px;
     line-height:1.6;
+    margin:0 0 40px;
   }
 
-  .scroll-cue{
+  .search{
+    max-width:480px;
     display:flex;
-    flex-direction:column;
     align-items:center;
-    gap:6px;
-    padding-bottom:28px;
-    font-family:var(--mono);
-    font-size:11px;
-    letter-spacing:1px;
-    text-transform:uppercase;
-    color:var(--text-dark-secondary);
+    gap:12px;
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:10px;
+    padding:14px 18px;
+    font-family:var(--body);
+    font-size:14.5px;
+    color:var(--text-secondary);
   }
-  .scroll-arrow{
-    color:var(--lime);
-    font-size:16px;
-    animation:bounce 1.8s infinite;
-  }
-  @keyframes bounce{
-    0%, 100%{ transform:translateY(0); }
-    50%{ transform:translateY(6px); }
-  }
+  .search svg{ flex-shrink:0; opacity:0.6; }
 
-  /* ---------- MAIN (light, off-white — breaks up the dark) ---------- */
-  main{
-    max-width:1080px;
+  /* ---------- Section label ---------- */
+  .section{
+    max-width:1240px;
     margin:0 auto;
-    padding:56px 40px 80px;
+    padding:0 48px 100px;
   }
-
-  section{ margin-bottom:56px; }
-
   .section-head{
     display:flex;
     align-items:baseline;
     justify-content:space-between;
-    margin-bottom:22px;
-    border-bottom:2px solid var(--lime);
-    padding-bottom:10px;
+    margin-bottom:32px;
+    border-bottom:1px solid var(--border);
+    padding-bottom:20px;
   }
   .section-head h2{
     font-family:var(--display);
-    font-weight:600;
-    font-size:22px;
-    color:var(--green);
+    font-weight:500;
+    font-size:20px;
+    margin:0;
+    color:var(--text-primary);
   }
-  .section-head .tag{
-    font-family:var(--mono);
-    font-size:11px;
-    color:var(--text-muted);
-    letter-spacing:1px;
-    text-transform:uppercase;
-  }
-
-  /* Resource cards */
-  .card-grid{
-    display:grid;
-    grid-template-columns:repeat(3, 1fr);
-    gap:18px;
-  }
-  .card{
-    background:var(--paper);
-    border:1px solid var(--border-light);
-    border-radius:10px;
-    padding:22px;
-    transition:transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
-    display:flex;
-    flex-direction:column;
-  }
-  .card:hover{
-    transform:translateY(-3px);
-    box-shadow:0 10px 24px rgba(0,43,34,0.10);
-    border-color:var(--lime);
-  }
-  .card .icon{
-    width:36px; height:36px;
-    border-radius:8px;
-    background:var(--lime-soft);
-    display:flex; align-items:center; justify-content:center;
-    margin-bottom:14px;
-    font-size:16px;
-    color:var(--green);
-  }
-  .card h3{
-    font-family:var(--display);
-    font-weight:600;
-    font-size:16px;
-    color:var(--green);
-    margin-bottom:6px;
-  }
-  .card p{
-    font-size:13px;
-    color:var(--text-muted);
-    line-height:1.5;
-    margin-bottom:14px;
-  }
-  .card .link{
+  .section-head span{
     font-family:var(--mono);
     font-size:12px;
-    color:var(--green);
-    font-weight:500;
-    display:inline-flex;
-    align-items:center;
-    gap:6px;
-    margin-top:auto;
+    color:var(--text-secondary);
+    letter-spacing:0.05em;
   }
-  .card .link::after{ content:"→"; color:var(--lime); }
 
-  /* Key contacts — black bubble panel */
-  .contacts-bubble{
-    background:var(--dark-bg);
-    border-radius:16px;
-    padding:32px;
-  }
-  .contacts-head{
-    border-bottom:2px solid var(--lime);
-  }
-  .contacts-head h2{ color:var(--text-dark); }
-  .contacts-head .tag{ color:var(--text-dark-secondary); }
-  .contact-grid{
+  /* ---------- Card grid ---------- */
+  .grid{
     display:grid;
-    grid-template-columns:repeat(2, 1fr);
-    gap:18px;
+    grid-template-columns:repeat(3, 1fr);
+    gap:1px;
+    background:var(--border);
+    border:1px solid var(--border);
+    border-radius:14px;
+    overflow:hidden;
   }
-  .contact-card{
-    background:var(--dark-surface);
-    border-radius:10px;
-    padding:20px;
-    border-left:4px solid var(--lime);
+  .card{
+    background:var(--surface);
+    padding:32px 28px;
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+    min-height:168px;
+    transition:background 0.2s ease;
+    position:relative;
   }
-  .contact-card .role{
+  .card:hover{ background:var(--surface-hover); }
+  .card:hover .card-title .dot{ background:var(--accent); box-shadow:0 0 0 5px var(--accent-soft); }
+
+  .card-index{
     font-family:var(--mono);
     font-size:11px;
-    text-transform:uppercase;
-    letter-spacing:1px;
-    color:var(--text-dark-secondary);
-    margin-bottom:4px;
+    color:var(--text-secondary);
+    letter-spacing:0.08em;
   }
-  .contact-card .name{
+  .card-title{
+    display:flex;
+    align-items:center;
+    gap:10px;
     font-family:var(--display);
-    font-weight:600;
-    font-size:16px;
-    color:var(--text-dark);
-    margin-bottom:6px;
+    font-weight:500;
+    font-size:17.5px;
   }
-  .contact-card .detail{
-    font-size:13px;
-    color:var(--lime);
+  .card-title .dot{ transition:all 0.2s ease; box-shadow:none; }
+  .card-icon{
+    font-size:24px;
+    line-height:1;
+    flex-shrink:0;
+  }
+  .card-desc{
+    font-size:13.5px;
+    color:var(--text-secondary);
+    line-height:1.55;
+    margin:0;
+  }
+  .card-arrow{
+    margin-top:auto;
+    font-family:var(--mono);
+    font-size:12px;
+    color:var(--accent);
+    opacity:0;
+    transform:translateX(-4px);
+    transition:all 0.2s ease;
+  }
+  .card:hover .card-arrow{ opacity:1; transform:translateX(0); }
+
+  @media (max-width:880px){
+    .grid{ grid-template-columns:1fr; }
+    .topbar, .hero, .section{ padding-left:24px; padding-right:24px; }
   }
 
-  /* Footer */
+  /* ---------- Footer ---------- */
   footer{
-    background:var(--dark-bg);
-    padding:28px 40px;
+    border-top:1px solid var(--border);
+    padding:40px 48px;
+    max-width:1240px;
+    margin:0 auto;
     display:flex;
     align-items:center;
     justify-content:space-between;
-    border-top:1px solid rgba(152,200,72,0.18);
+    flex-wrap:wrap;
+    gap:16px;
   }
-  footer .foot-note{
+  footer .logo{ height:18px; opacity:0.85; }
+  .footer-meta{
     font-family:var(--mono);
-    font-size:11px;
-    color:var(--text-dark-secondary);
+    font-size:12px;
+    color:var(--text-secondary);
+    display:flex;
+    gap:24px;
   }
-  footer a{ color:var(--lime); }
+  .footer-meta a:hover{ color:var(--accent); }
 
-  @media (max-width: 800px){
-    .card-grid, .contact-grid{ grid-template-columns:1fr; }
-    .hero h1{ font-size:28px; }
-    main{ padding:40px 24px 60px; }
+  a:focus-visible, .search:focus-within{
+    outline:2px solid var(--accent);
+    outline-offset:2px;
+  }
+
+  /* ---------- Key Contacts ---------- */
+  .contact-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:1px;
+    background:var(--border);
+    border:1px solid var(--border);
+    border-radius:14px;
+    overflow:hidden;
+  }
+  .contact-card{
+    background:var(--surface);
+    padding:28px 26px;
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+  }
+  .contact-role{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-family:var(--display);
+    font-weight:500;
+    font-size:16px;
+    margin-bottom:4px;
+  }
+  .contact-name{
+    font-size:13.5px;
+    color:var(--text-secondary);
+  }
+  .contact-detail{
+    font-family:var(--mono);
+    font-size:12.5px;
+    color:var(--accent);
+  }
+  .contact-detail.muted{ color:var(--text-secondary); }
+
+  /* ---------- Quick Reminders ---------- */
+  .reminder-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:1px;
+    background:var(--border);
+    border:1px solid var(--border);
+    border-radius:14px;
+    overflow:hidden;
+  }
+  .reminder-card{
+    background:var(--surface);
+    padding:32px 30px;
+  }
+  .reminder-title{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-family:var(--display);
+    font-weight:500;
+    font-size:18px;
+    margin-bottom:18px;
+  }
+  .reminder-list{
+    list-style:none;
+    margin:0; padding:0;
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+  }
+  .reminder-list li{
+    font-size:13.5px;
+    color:var(--text-secondary);
+    line-height:1.55;
+    padding-left:18px;
+    position:relative;
+  }
+  .reminder-list li::before{
+    content:"";
+    position:absolute;
+    left:0; top:7px;
+    width:5px; height:5px;
+    border-radius:50%;
+    background:var(--accent);
+  }
+
+  @media (max-width:880px){
+    .contact-grid, .reminder-grid{ grid-template-columns:1fr; }
   }
 </style>
 </head>
 <body>
 
-  <div class="top-section">
   <div class="topbar">
-    <img src="docs/Number_Logo_Reverse.png" alt="Number" class="logo-mark">
-    <div class="contact">Questions? <a href="mailto:hr@upmgt.org">hr@upmgt.org</a></div>
+    <img class="logo" src="docs/Number_Logo_Reverse.png" alt="Number">
+    <div class="topbar-right">Questions? <a href="mailto:hr@upmgt.org">hr@upmgt.org</a></div>
   </div>
 
   <div class="hero">
-    <div class="eyebrow">Employee Resource Hub</div>
-    <h1>Everything you need, in one place.</h1>
-    <p>Handbooks, benefits, forms, and essential documents — organized for the NUMBER team to find what you need in seconds.</p>
+    <div class="eyebrow"><span class="dot pulse"></span> EMPLOYEE RESOURCE HUB</div>
+    <h1>Everything you need<span>,</span> in one place<span>.</span></h1>
+    <p class="hero-sub">Handbooks, benefits, forms, and essential documents — organized for the NUMBER team to find what you need in seconds.</p>
   </div>
 
-  <div class="scroll-cue">
-    <span>Scroll for resources</span>
-    <div class="scroll-arrow">↓</div>
+  <div class="section">
+    <div class="section-head">
+      <h2>HR &amp; Policies</h2>
+      <span>07 DOCUMENTS</span>
+    </div>
+    <div class="grid">
+
+      <a class="card" href="docs/Handbook_2026.pdf" target="_blank">
+        <div class="card-index">01</div>
+        <div class="card-title"><span class="dot"></span><span class="card-icon">📘</span>Handbook 2026</div>
+        <p class="card-desc">Policies, expectations, and day-to-day work standards at NUMBER.</p>
+        <div class="card-arrow">View →</div>
+      </a>
+
+      <a class="card" href="docs/9-1-26_Employee_Confidentiality_NDA.pdf" target="_blank">
+        <div class="card-index">02</div>
+        <div class="card-title"><span class="dot"></span><span class="card-icon">🔒</span>Confidentiality NDA</div>
+        <p class="card-desc">Employee confidentiality agreement protecting company and client information.</p>
+        <div class="card-arrow">View →</div>
+      </a>
+
+      <a class="card" href="docs/9-1-26_AML-ATF_Policy.pdf" target="_blank">
+        <div class="card-index">03</div>
+        <div class="card-title"><span class="dot"></span><span class="card-icon">⚖️</span>AML-ATF Policy</div>
+        <p class="card-desc">Anti-money laundering standards and compliance obligations.</p>
+        <div class="card-arrow">View →</div>
+      </a>
+
+      <a class="card" href="docs/9-1-26_Travel___Expense_Reimbursement_Policy.pdf" target="_blank">
+        <div class="card-index">04</div>
+        <div class="card-title"><span class="dot"></span><span class="card-icon">✈️</span>Travel and Reimbursement Policy</div>
+        <p class="card-desc">Travel and expense reimbursement policy and procedures.</p>
+        <div class="card-arrow">View →</div>
+      </a>
+
+      <a class="card" href="docs/9-1-26_Communications_and_Computer_Use_Policy.pdf" target="_blank">
+        <div class="card-index">05</div>
+        <div class="card-title"><span class="dot"></span><span class="card-icon">💻</span>Communications and Computer Use Policy</div>
+        <p class="card-desc">Guidelines for appropriate use of company communications and computer systems.</p>
+        <div class="card-arrow">View →</div>
+      </a>
+
+      <a class="card" href="docs/Combined_Federal_Employment_Posters.pdf" target="_blank">
+        <div class="card-index">06</div>
+        <div class="card-title"><span class="dot"></span><span class="card-icon">🏛️</span>Federal Labor Law Posters</div>
+        <p class="card-desc">Required federal workplace posters, including EEOC, FMLA, OSHA, and USERRA notices.</p>
+        <div class="card-arrow">View →</div>
+      </a>
+
+      <a class="card" href="docs/Combined_Maine_Employment_Posters.pdf" target="_blank" style="grid-column: span 3;">
+        <div class="card-index">07</div>
+        <div class="card-title"><span class="dot"></span><span class="card-icon">🌲</span>Maine Labor Law Posters</div>
+        <p class="card-desc">Required Maine state workplace posters, including wage, leave, and workplace rights notices.</p>
+        <div class="card-arrow">View →</div>
+      </a>
+
+    </div>
   </div>
+
+  <div class="section">
+    <div class="section-head">
+      <h2>Payroll &amp; Compensation</h2>
+      <span>05 DOCUMENTS</span>
+    </div>
+    <div class="grid">
+
+      <a class="card" href="docs/2026%20Form%20W-4.pdf" target="_blank">
+        <div class="card-index">01</div>
+        <div class="card-title"><span class="dot"></span><span class="card-icon">💵</span>Form W-4 (2026)</div>
+        <p class="card-desc">Federal withholding tax form for current tax year.</p>
+        <div class="card-arrow">View →</div>
+      </a>
+
+      <a class="card" href="docs/20_Form%20W-4ME.indd.pdf" target="_blank">
+        <div class="card-index">02</div>
+        <div class="card-title"><span class="dot"></span><span class="card-icon">📋</span>Form W-4ME</div>
+        <p class="card-desc">Maine state withholding tax form.</p>
+        <div class="card-arrow">View →</div>
+      </a>
+
+      <a class="card" href="docs/Direct-Deposit-Authorization.pdf" target="_blank">
+        <div class="card-index">03</div>
+        <div class="card-title"><span class="dot"></span><span class="card-icon">🏦</span>Direct Deposit Auth</div>
+        <p class="card-desc">Authorization form for direct deposit setup and changes.</p>
+        <div class="card-arrow">View →</div>
+      </a>
+
+      <a class="card" href="docs/Expense%20Report%20Template.pdf" target="_blank">
+        <div class="card-index">04</div>
+        <div class="card-title"><span class="dot"></span><span class="card-icon">💼</span>Expense Report</div>
+        <p class="card-desc">Template for submitting business expense reimbursement requests.</p>
+        <div class="card-arrow">View →</div>
+      </a>
+
+      <a class="card" href="docs/EE%20Kiosk.pdf" target="_blank" style="grid-column: span 2;">
+        <div class="card-index">05</div>
+        <div class="card-title"><span class="dot"></span><span class="card-icon">🖥️</span>Employee Kiosk</div>
+        <p class="card-desc">Guide to accessing and using the employee self-service kiosk.</p>
+        <div class="card-arrow">View →</div>
+      </a>
+
+    </div>
   </div>
 
-  <main>
+  <div class="section">
+    <div class="section-head">
+      <h2>Benefits &amp; Insurance</h2>
+      <span>11 DOCUMENTS</span>
+    </div>
+    <div class="grid">
 
-    <section>
-      <div class="section-head">
-        <h2>HR & Policies</h2>
-      </div>
-      <div class="card-grid">
-        <div class="card">
-          <div class="icon">📘</div>
-          <h3>Handbook 2026</h3>
-          <p>Policies, expectations, and day-to-day work standards at NUMBER.</p>
-          <a href="docs/Handbook%202026%20(1).docx" class="link">Download</a>
-        </div>
-        <div class="card">
-          <div class="icon">🔒</div>
-          <h3>Confidentiality NDA</h3>
-          <p>Employee confidentiality agreement protecting company and client information.</p>
-          <a href="docs/Employee%20Confidentiality%20NDA%20(2).docx" class="link">Download</a>
-        </div>
-        <div class="card">
-          <div class="icon">⚖️</div>
-          <h3>AML-ATF Policy</h3>
-          <p>Anti-money laundering standards and compliance obligations.</p>
-          <a href="docs/AML-ATF%20Policy.docx" class="link">Download</a>
-        </div>
-        <div class="card">
-          <div class="icon">✈️</div>
-          <h3>Travel and Reimbursement Policy</h3>
-          <p>Travel and expense reimbursement policy and procedures.</p>
-          <a href="docs/Travel%20&%20Expense%20Reimbursement%20Policy.docx" class="link">Download</a>
-        </div>
-        <div class="card">
-          <div class="icon">💻</div>
-          <h3>Communications and Computer Use Policy</h3>
-          <p>Guidelines for appropriate use of company communications and computer systems.</p>
-          <a href="docs/Communications%20and%20Computer%20Use%20Policy.docx" class="link">Download</a>
-        </div>
-      </div>
-    </section>
+      <a class="card" href="docs/Option%201%20-%20User%20Friendly%20-%20Silver%20HMO%20(1).pdf" target="_blank">
+        <div class="card-index">01</div>
+        <div class="card-title"><span class="dot"></span><span class="card-icon">🏥</span>Silver HMO Plan</div>
+        <p class="card-desc">Health Maintenance Organization plan option with user-friendly overview.</p>
+        <div class="card-arrow">View →</div>
+      </a>
 
-    <section>
-      <div class="section-head">
-        <h2>Payroll & Compensation</h2>
-      </div>
-      <div class="card-grid">
-        <div class="card">
-          <div class="icon">💵</div>
-          <h3>Form W-4 (2026)</h3>
-          <p>Federal withholding tax form for current tax year.</p>
-          <a href="docs/2026%20Form%20W-4.pdf" target="_blank" class="link">View</a>
-        </div>
-        <div class="card">
-          <div class="icon">📋</div>
-          <h3>Form W-4ME</h3>
-          <p>Maine state withholding tax form.</p>
-          <a href="docs/20_Form%20W-4ME.indd.pdf" target="_blank" class="link">View</a>
-        </div>
-        <div class="card">
-          <div class="icon">🏦</div>
-          <h3>Direct Deposit Auth</h3>
-          <p>Authorization form for direct deposit setup and changes.</p>
-          <a href="docs/Direct-Deposit-Authorization.pdf" target="_blank" class="link">View</a>
-        </div>
-        <div class="card">
-          <div class="icon">💼</div>
-          <h3>Expense Report</h3>
-          <p>Template for submitting business expense reimbursement requests.</p>
-          <a href="docs/Expense%20Report%20Template.pdf" target="_blank" class="link">View</a>
-        </div>
-      </div>
-    </section>
+      <a class="card" href="docs/Option%202%20-%20User%20Friendly%20-%20Silver%20PPO%20(1).pdf" target="_blank">
+        <div class="card-index">02</div>
+        <div class="card-title"><span class="dot"></span><span class="card-icon">🏥</span>Silver PPO Plan</div>
+        <p class="card-desc">Preferred Provider Organization plan with flexibility and choice.</p>
+        <div class="card-arrow">View →</div>
+      </a>
 
-    <section>
-      <div class="section-head">
-        <h2>Benefits & Insurance</h2>
-      </div>
-      <div class="card-grid">
-        <div class="card">
-          <div class="icon">🏥</div>
-          <h3>Silver HMO Plan</h3>
-          <p>Health Maintenance Organization plan option with user-friendly overview.</p>
-          <a href="docs/Option%201%20-%20User%20Friendly%20-%20Silver%20HMO%20(1).pdf" target="_blank" class="link">View</a>
-        </div>
-        <div class="card">
-          <div class="icon">🏥</div>
-          <h3>Silver PPO Plan</h3>
-          <p>Preferred Provider Organization plan with flexibility and choice.</p>
-          <a href="docs/Option%202%20-%20User%20Friendly%20-%20Silver%20PPO%20(1).pdf" target="_blank" class="link">View</a>
-        </div>
-        <div class="card">
-          <div class="icon">✨</div>
-          <h3>Gold PPO Plan</h3>
-          <p>Premium PPO coverage with enhanced benefits.</p>
-          <a href="docs/Option%203%20-%20User%20Friendly%20-%20Gold%20PPO%20(1).pdf" target="_blank" class="link">View</a>
-        </div>
-        <div class="card">
-          <div class="icon">😁</div>
-          <h3>Dental Benefits</h3>
-          <p>Dental insurance information and IVR access guide.</p>
-          <a href="docs/Dental%20IVR%20Slipsheet-Easy%20Pay%20Solutions%20Inc%20(1).pdf" target="_blank" class="link">View</a>
-        </div>
-        <div class="card">
-          <div class="icon">👓</div>
-          <h3>Vision Benefits</h3>
-          <p>Vision insurance information and IVR access guide.</p>
-          <a href="docs/Vision%20IVR%20Slipsheet-Easy%20Pay%20Solutions%20Inc%20(1).pdf" target="_blank" class="link">View</a>
-        </div>
-        <div class="card">
-          <div class="icon">🛡️</div>
-          <h3>Short-Term Disability</h3>
-          <p>STD employee claim information and filing procedures.</p>
-          <a href="docs/STD%20Employee%20Claim%20Flyer.pdf" target="_blank" class="link">View</a>
-        </div>
-        <div class="card">
-          <div class="icon">👶</div>
-          <h3>PFML - Alfac</h3>
-          <p>Paid Family and Medical Leave information and enrollment form.</p>
-          <a href="docs/PFML%20-%20Alfac%20Info%20Form.pdf" target="_blank" class="link">View</a>
-        </div>
-        <div class="card">
-          <div class="icon">📢</div>
-          <h3>PFML State Poster</h3>
-          <p>Maine state poster for Paid Family and Medical Leave rights.</p>
-          <a href="docs/PFML%20State%20Poster.pdf" target="_blank" class="link">View</a>
-        </div>
-        <div class="card">
-          <div class="icon">🎓</div>
-          <h3>Retirement Education</h3>
-          <p>Retirement planning meeting resources and guidance.</p>
-          <a href="docs/Easy%20Pay%20Solutions%20Retirement%20Education%20Meeting%20(1).pdf" target="_blank" class="link">View</a>
-        </div>
-        <div class="card">
-          <div class="icon">💡</div>
-          <h3>Participant Portal</h3>
-          <p>Web flyer and login information for the benefits participant portal.</p>
-          <a href="docs/Participant%20Web%20Flyer%20(1).pdf" target="_blank" class="link">View</a>
-        </div>
-      </div>
-    </section>
+      <a class="card" href="docs/Option%203%20-%20User%20Friendly%20-%20Gold%20PPO%20(1).pdf" target="_blank">
+        <div class="card-index">03</div>
+        <div class="card-title"><span class="dot"></span><span class="card-icon">✨</span>Gold PPO Plan</div>
+        <p class="card-desc">Premium PPO coverage with enhanced benefits.</p>
+        <div class="card-arrow">View →</div>
+      </a>
 
-    <section>
-      <div class="section-head">
-        <h2>Tools & Resources</h2>
-      </div>
-      <div class="card-grid">
-        <div class="card">
-          <div class="icon">⚙️</div>
-          <h3>Personalized Tools</h3>
-          <p>Information on personalized experience tools and available widgets.</p>
-          <a href="docs/Personalized%20Experience%20tools_widgets%20flyer%20(1).PDF" target="_blank" class="link">View</a>
-        </div>
-        <div class="card">
-          <div class="icon">🖥️</div>
-          <h3>Employee Kiosk</h3>
-          <p>Guide to accessing and using the employee self-service kiosk.</p>
-          <a href="docs/EE%20Kiosk.pdf" target="_blank" class="link">View</a>
-        </div>
-        <div class="card">
-          <div class="icon">📅</div>
-          <h3>Fast Rock Planner</h3>
-          <p>Annual planner and organizational tool for the NUMBER team.</p>
-          <a href="docs/Fast%20Rock%20Planner.pdf" target="_blank" class="link">View</a>
-        </div>
-      </div>
-    </section>
+      <a class="card" href="docs/Dental%20IVR%20Slipsheet-Easy%20Pay%20Solutions%20Inc%20(1).pdf" target="_blank">
+        <div class="card-index">04</div>
+        <div class="card-title"><span class="dot"></span><span class="card-icon">😁</span>Dental Benefits</div>
+        <p class="card-desc">Dental insurance information and IVR access guide.</p>
+        <div class="card-arrow">View →</div>
+      </a>
 
-    <section>
-      <div class="contacts-bubble">
-        <div class="section-head contacts-head">
-          <h2>Key Contacts</h2>
-        </div>
-        <div class="contact-grid">
-          <div class="contact-card">
-            <div class="role">HR Director</div>
-            <div class="name">Stephanie Lanman</div>
-            <div class="detail">SLanman@upmgt.org</div>
-          </div>
-          <div class="contact-card">
-            <div class="role">HR Generalist</div>
-            <div class="name">Laura Seavey</div>
-            <div class="detail">LSeavey@upmgt.org</div>
-          </div>
-          <div class="contact-card">
-            <div class="role">Chief Financial Officer</div>
-            <div class="name">Eran Vail, CPA</div>
-            <div class="detail">207.805.9350 · EVail@number.tech</div>
-          </div>
-        </div>
-      </div>
-    </section>
+      <a class="card" href="docs/Vision%20IVR%20Slipsheet-Easy%20Pay%20Solutions%20Inc%20(1).pdf" target="_blank">
+        <div class="card-index">05</div>
+        <div class="card-title"><span class="dot"></span><span class="card-icon">👓</span>Vision Benefits</div>
+        <p class="card-desc">Vision insurance information and IVR access guide.</p>
+        <div class="card-arrow">View →</div>
+      </a>
 
-  </main>
+      <a class="card" href="docs/STD%20Employee%20Claim%20Flyer.pdf" target="_blank">
+        <div class="card-index">06</div>
+        <div class="card-title"><span class="dot"></span><span class="card-icon">🛡️</span>Short-Term Disability</div>
+        <p class="card-desc">STD employee claim information and filing procedures.</p>
+        <div class="card-arrow">View →</div>
+      </a>
+
+      <a class="card" href="docs/PFML%20-%20Alfac%20Info%20Form.pdf" target="_blank">
+        <div class="card-index">07</div>
+        <div class="card-title"><span class="dot"></span><span class="card-icon">👶</span>PFML - Alfac</div>
+        <p class="card-desc">Paid Family and Medical Leave information and enrollment form.</p>
+        <div class="card-arrow">View →</div>
+      </a>
+
+      <a class="card" href="docs/PFML%20State%20Poster.pdf" target="_blank">
+        <div class="card-index">08</div>
+        <div class="card-title"><span class="dot"></span><span class="card-icon">📢</span>PFML State Poster</div>
+        <p class="card-desc">Maine state poster for Paid Family and Medical Leave rights.</p>
+        <div class="card-arrow">View →</div>
+      </a>
+
+      <a class="card" href="docs/Easy%20Pay%20Solutions%20Retirement%20Education%20Meeting%20(1).pdf" target="_blank">
+        <div class="card-index">09</div>
+        <div class="card-title"><span class="dot"></span><span class="card-icon">🎓</span>Retirement Education</div>
+        <p class="card-desc">Retirement planning meeting resources and guidance.</p>
+        <div class="card-arrow">View →</div>
+      </a>
+
+      <a class="card" href="docs/Personalized%20Experience%20tools_widgets%20flyer%20(1).PDF" target="_blank">
+        <div class="card-index">10</div>
+        <div class="card-title"><span class="dot"></span><span class="card-icon">⚙️</span>Personalized Tools (Empower)</div>
+        <p class="card-desc">Information on personalized experience tools and available widgets for your 401K account.</p>
+        <div class="card-arrow">View →</div>
+      </a>
+
+      <a class="card" href="docs/Participant%20Web%20Flyer%20(1).pdf" target="_blank" style="grid-column: span 2;">
+        <div class="card-index">11</div>
+        <div class="card-title"><span class="dot"></span><span class="card-icon">💡</span>Participant Portal</div>
+        <p class="card-desc">Web flyer and login information for the benefits participant portal.</p>
+        <div class="card-arrow">View →</div>
+      </a>
+
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-head">
+      <h2>Key Contacts</h2>
+      <span>WHO TO REACH</span>
+    </div>
+    <div class="contact-grid">
+
+      <div class="contact-card">
+        <div class="contact-role"><span class="dot"></span>HR Director</div>
+        <div class="contact-name">Stephanie Lanman</div>
+        <div class="contact-detail">SLanman@upmgt.org</div>
+      </div>
+
+      <div class="contact-card">
+        <div class="contact-role"><span class="dot"></span>HR Generalist</div>
+        <div class="contact-name">Laura Seavey</div>
+        <div class="contact-detail">LSeavey@upmgt.org</div>
+      </div>
+
+      <div class="contact-card">
+        <div class="contact-role"><span class="dot"></span>Chief Financial Officer</div>
+        <div class="contact-name">Eran Vail, CPA</div>
+        <div class="contact-detail">207.805.9350 · EVail@number.tech</div>
+      </div>
+
+      <div class="contact-card">
+        <div class="contact-role"><span class="dot"></span>Client Manager - Medical</div>
+        <div class="contact-name">Beata Kozuch-Roefaro</div>
+        <div class="contact-detail">(973) 243-5500 · broefaro@rdparisiassociates.com</div>
+        <div class="contact-detail muted">Cell/text: 908-340-8737</div>
+      </div>
+
+      <div class="contact-card">
+        <div class="contact-role"><span class="dot"></span>401K</div>
+        <div class="contact-name">Empower Retirement</div>
+        <div class="contact-detail">www.empowermyretirement.com</div>
+        <div class="contact-detail muted">800-338-4015</div>
+      </div>
+
+      <div class="contact-card">
+        <div class="contact-role"><span class="dot"></span>Financial Advisor</div>
+        <div class="contact-name">April Tardiff, Merrill Lynch</div>
+        <div class="contact-detail">Senior Vice President, Wealth Management</div>
+        <div class="contact-detail muted">207-458-3451 · April.tardiff@ml.com · Portland, Maine</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-head">
+      <h2>Quick Reminders</h2>
+      <span>02 TOPICS</span>
+    </div>
+    <div class="reminder-grid">
+
+      <div class="reminder-card">
+        <div class="reminder-title"><span class="dot"></span>Pay Schedule</div>
+        <ul class="reminder-list">
+          <li>Paychecks are issued on a biweekly schedule via direct deposit.</li>
+          <li>Pay stubs and tax documents are available anytime in Paylocity.</li>
+          <li>Questions about a paycheck? Reach out to HR above.</li>
+          <li>2026 pay dates — Jan: 1/9, 1/23</li>
+          <li>Feb: 2/6, 2/20 &nbsp;·&nbsp; Mar: 3/6, 3/20</li>
+          <li>Apr: 4/3, 4/17 &nbsp;·&nbsp; May: 5/1, 5/15, 5/29</li>
+          <li>Jun: 6/12, 6/26 &nbsp;·&nbsp; Jul: 7/10, 7/24</li>
+          <li>Aug: 8/7, 8/21 &nbsp;·&nbsp; Sep: 9/4, 9/18</li>
+          <li>Oct: 10/2, 10/16, 10/30</li>
+          <li>Nov: 11/13, 11/27 &nbsp;·&nbsp; Dec: 12/11, 12/24</li>
+        </ul>
+      </div>
+
+      <div class="reminder-card">
+        <div class="reminder-title"><span class="dot"></span>2026 Holiday Schedule</div>
+        <ul class="reminder-list">
+          <li>Offices closed on the following dates:</li>
+          <li>New Year's Day — Thursday, 1/1/26</li>
+          <li>Memorial Day — Monday, 5/25/26</li>
+          <li>Fourth of July — Friday, 7/3/26</li>
+          <li>Labor Day — Monday, 9/7/26</li>
+          <li>Thanksgiving — Thursday & Friday, 11/26–11/27/26</li>
+          <li>Christmas Eve — Thursday, 12/24/26</li>
+          <li>Christmas Day — Friday, 12/25/26</li>
+          <li>New Year's Eve — Thursday, 12/31/26</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
 
   <footer>
-    <div class="foot-note">© 2026 NUMBER Payments</div>
-    <div class="foot-note">Employee Resource Hub</div>
+    <img class="logo footer-logo" src="docs/Number_Logo_Reverse.png" alt="Number">
+    <div class="footer-meta">
+      <a href="https://number.tech">number.tech</a>
+      <span>© 2026 NUMBER Payments</span>
+    </div>
   </footer>
 
 </body>
