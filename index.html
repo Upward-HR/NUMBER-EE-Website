@@ -324,8 +324,52 @@
     background:var(--accent);
   }
 
+  /* ---------- Notice callout ---------- */
+  .notice{
+    margin-top:16px;
+    display:flex;
+    align-items:flex-start;
+    gap:14px;
+    background:var(--accent-soft);
+    border:1px solid var(--accent-line);
+    border-radius:12px;
+    padding:18px 22px;
+    font-size:14px;
+    line-height:1.55;
+    color:var(--text-primary);
+  }
+  .notice .card-icon{ font-size:20px; }
+  .notice strong{ font-family:var(--display); font-weight:500; }
+  .notice a{ color:var(--accent); }
+  .notice a:hover{ text-decoration:underline; }
+
+  /* ---------- Contact groups ---------- */
+  .contact-top{
+    display:grid;
+    grid-template-columns:2fr 1fr;
+    gap:24px;
+    margin-bottom:32px;
+  }
+  .group-label{
+    font-family:var(--display);
+    font-weight:500;
+    font-size:15px;
+    color:var(--accent);
+    margin:0 0 12px;
+  }
+  .contact-top > div{ display:flex; flex-direction:column; }
+  .contact-top .contact-grid{ flex:1; }
+  .contact-grid.cols-1{ grid-template-columns:1fr; }
+  .contact-grid.cols-2{ grid-template-columns:1fr 1fr; }
+  .contact-note{
+    font-size:13px;
+    color:var(--text-secondary);
+    line-height:1.5;
+    margin-top:6px;
+  }
+
   @media (max-width:880px){
-    .contact-grid, .reminder-grid{ grid-template-columns:1fr; }
+    .contact-grid, .contact-grid.cols-2, .reminder-grid, .contact-top{ grid-template-columns:1fr; }
   }
 </style>
 </head>
@@ -390,13 +434,24 @@
         <div class="card-arrow">View →</div>
       </a>
 
-      <a class="card" href="docs/Combined_Maine_Employment_Posters.pdf" target="_blank" style="grid-column: span 3;">
+      <a class="card" href="docs/Combined_Maine_Employment_Posters.pdf" target="_blank">
         <div class="card-index">07</div>
         <div class="card-title"><span class="dot"></span><span class="card-icon">🌲</span>Maine Labor Law Posters</div>
         <p class="card-desc">Required Maine state workplace posters, including wage, leave, and workplace rights notices.</p>
         <div class="card-arrow">View →</div>
       </a>
 
+      <a class="card" href="docs/State%20Labor%20Law%20Posters%20FL%20KY%20NV%20OR%20TX.pdf" target="_blank" style="grid-column: span 2;">
+        <div class="card-index">08</div>
+        <div class="card-title"><span class="dot"></span><span class="card-icon">🗺️</span>Remote State Labor Law Posters</div>
+        <p class="card-desc">Required state notices for remote employees in Florida, Kentucky, Nevada, Oregon, and Texas, including workers' compensation notices. Find your state's section inside.</p>
+        <div class="card-arrow">View →</div>
+      </a>
+
+    </div>
+    <div class="notice">
+      <span class="card-icon">🩹</span>
+      <div><strong>Hurt on the job?</strong> Report any workplace injury or workers' compensation claim to Eran Vail, CFO, at 207.805.9350 or <a href="mailto:EVail@number.tech">EVail@number.tech</a>.</div>
     </div>
   </div>
 
@@ -471,59 +526,66 @@
         <div class="card-arrow">View →</div>
       </a>
 
-      <a class="card" href="docs/Dental%20IVR%20Slipsheet-Easy%20Pay%20Solutions%20Inc%20(1).pdf" target="_blank">
+      <a class="card" href="docs/Dental%20Benefit%20Summary.pdf" target="_blank">
         <div class="card-index">04</div>
-        <div class="card-title"><span class="dot"></span><span class="card-icon">😁</span>Dental Benefits</div>
-        <p class="card-desc">Dental insurance information and IVR access guide.</p>
+        <div class="card-title"><span class="dot"></span><span class="card-icon">😁</span>Dental Benefit Summary</div>
+        <p class="card-desc">MetLife dental plan overview: coverage levels, deductibles, annual maximum, and covered services.</p>
         <div class="card-arrow">View →</div>
       </a>
 
-      <a class="card" href="docs/Vision%20IVR%20Slipsheet-Easy%20Pay%20Solutions%20Inc%20(1).pdf" target="_blank">
+      <a class="card" href="docs/Vision%20Benefit%20Summary.pdf" target="_blank">
         <div class="card-index">05</div>
-        <div class="card-title"><span class="dot"></span><span class="card-icon">👓</span>Vision Benefits</div>
-        <p class="card-desc">Vision insurance information and IVR access guide.</p>
+        <div class="card-title"><span class="dot"></span><span class="card-icon">👓</span>Vision Benefit Summary</div>
+        <p class="card-desc">MetLife voluntary vision plan overview: exams, lenses, frames, and contact lens coverage.</p>
+        <div class="card-arrow">View →</div>
+      </a>
+
+      <a class="card" href="docs/MetLife%20Enrollment%20Form.pdf" target="_blank">
+        <div class="card-index">06</div>
+        <div class="card-title"><span class="dot"></span><span class="card-icon">📝</span>MetLife Enrollment Form</div>
+        <p class="card-desc">Enroll in or change your MetLife dental, vision, and life coverage, and name your beneficiaries.</p>
+        <div class="card-arrow">View →</div>
+      </a>
+
+      <a class="card" href="docs/Dental%20and%20Vision%20Payroll%20Deduction%20Form.pdf" target="_blank">
+        <div class="card-index">07</div>
+        <div class="card-title"><span class="dot"></span><span class="card-icon">🧾</span>Dental &amp; Vision Payroll Deduction Form</div>
+        <p class="card-desc">Authorizes your biweekly pre-tax dental and vision deductions for the 2026 plan year.</p>
         <div class="card-arrow">View →</div>
       </a>
 
       <a class="card" href="docs/STD%20Employee%20Claim%20Flyer.pdf" target="_blank">
-        <div class="card-index">06</div>
+        <div class="card-index">08</div>
         <div class="card-title"><span class="dot"></span><span class="card-icon">🛡️</span>Short-Term Disability</div>
         <p class="card-desc">STD employee claim information and filing procedures.</p>
         <div class="card-arrow">View →</div>
       </a>
 
       <a class="card" href="docs/PFML%20-%20Alfac%20Info%20Form.pdf" target="_blank">
-        <div class="card-index">07</div>
+        <div class="card-index">09</div>
         <div class="card-title"><span class="dot"></span><span class="card-icon">👶</span>PFML - Alfac</div>
         <p class="card-desc">Paid Family and Medical Leave information and enrollment form.</p>
         <div class="card-arrow">View →</div>
       </a>
 
       <a class="card" href="docs/PFML%20State%20Poster.pdf" target="_blank">
-        <div class="card-index">08</div>
+        <div class="card-index">10</div>
         <div class="card-title"><span class="dot"></span><span class="card-icon">📢</span>PFML State Poster</div>
         <p class="card-desc">Maine state poster for Paid Family and Medical Leave rights.</p>
         <div class="card-arrow">View →</div>
       </a>
 
       <a class="card" href="docs/Easy%20Pay%20Solutions%20Retirement%20Education%20Meeting%20(1).pdf" target="_blank">
-        <div class="card-index">09</div>
+        <div class="card-index">11</div>
         <div class="card-title"><span class="dot"></span><span class="card-icon">🎓</span>Retirement Education</div>
         <p class="card-desc">Retirement planning meeting resources and guidance.</p>
         <div class="card-arrow">View →</div>
       </a>
 
-      <a class="card" href="docs/Personalized%20Experience%20tools_widgets%20flyer%20(1).PDF" target="_blank">
-        <div class="card-index">10</div>
-        <div class="card-title"><span class="dot"></span><span class="card-icon">⚙️</span>Personalized Tools (Empower)</div>
-        <p class="card-desc">Information on personalized experience tools and available widgets for your 401K account.</p>
-        <div class="card-arrow">View →</div>
-      </a>
-
-      <a class="card" href="docs/Participant%20Web%20Flyer%20(1).pdf" target="_blank" style="grid-column: span 2;">
-        <div class="card-index">11</div>
-        <div class="card-title"><span class="dot"></span><span class="card-icon">💡</span>Participant Portal</div>
-        <p class="card-desc">Web flyer and login information for the benefits participant portal.</p>
+      <a class="card" href="docs/Participant%20Web%20Flyer%20(1).pdf" target="_blank">
+        <div class="card-index">12</div>
+        <div class="card-title"><span class="dot"></span><span class="card-icon">💡</span>401(k) – Empower Participant Portal</div>
+        <p class="card-desc">Web flyer and login information for your Empower 401(k) participant portal.</p>
         <div class="card-arrow">View →</div>
       </a>
 
@@ -534,28 +596,44 @@
     <div class="section-head">
       <h2>Key Contacts</h2>
     </div>
+    <div class="contact-top">
+
+      <div>
+        <h3 class="group-label">Employment Matters (UMG)</h3>
+        <div class="contact-grid cols-2">
+          <div class="contact-card">
+            <div class="contact-role"><span class="dot"></span>HR Director</div>
+            <div class="contact-name">Stephanie Lanman</div>
+            <div class="contact-detail">SLanman@upmgt.org</div>
+          </div>
+          <div class="contact-card">
+            <div class="contact-role"><span class="dot"></span>HR Generalist</div>
+            <div class="contact-name">Laura Seavey</div>
+            <div class="contact-detail">LSeavey@upmgt.org</div>
+            <div class="contact-detail muted">UMG HR: hr@upmgt.org</div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h3 class="group-label">Payroll &amp; Benefits</h3>
+        <div class="contact-grid cols-1">
+          <div class="contact-card">
+            <div class="contact-role"><span class="dot"></span>Chief Financial Officer</div>
+            <div class="contact-name">Eran Vail, CPA</div>
+            <div class="contact-detail">207.805.9350 · EVail@number.tech</div>
+            <div class="contact-note">Your first stop for paychecks, benefits, and workplace injury claims.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <h3 class="group-label">Direct Vendor Contacts</h3>
     <div class="contact-grid">
 
       <div class="contact-card">
-        <div class="contact-role"><span class="dot"></span>HR Director</div>
-        <div class="contact-name">Stephanie Lanman</div>
-        <div class="contact-detail">SLanman@upmgt.org</div>
-      </div>
-
-      <div class="contact-card">
-        <div class="contact-role"><span class="dot"></span>HR Generalist</div>
-        <div class="contact-name">Laura Seavey</div>
-        <div class="contact-detail">LSeavey@upmgt.org</div>
-      </div>
-
-      <div class="contact-card">
-        <div class="contact-role"><span class="dot"></span>Chief Financial Officer</div>
-        <div class="contact-name">Eran Vail, CPA</div>
-        <div class="contact-detail">207.805.9350 · EVail@number.tech</div>
-      </div>
-
-      <div class="contact-card">
-        <div class="contact-role"><span class="dot"></span>Client Manager - Medical</div>
+        <div class="contact-role"><span class="dot"></span>Medical / Dental / Vision Insurance Broker</div>
         <div class="contact-name">Beata Kozuch-Roefaro</div>
         <div class="contact-detail">(973) 243-5500 · broefaro@rdparisiassociates.com</div>
         <div class="contact-detail muted">Cell/text: 908-340-8737</div>
@@ -622,7 +700,7 @@
     <img class="logo footer-logo" src="docs/Number_Logo_Reverse.png" alt="Number">
     <div class="footer-meta">
       <a href="https://number.tech">number.tech</a>
-      <span>© 2026 NUMBER Payments</span>
+      <span>© 2026 NUMBER</span>
     </div>
   </footer>
 
